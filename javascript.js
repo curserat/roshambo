@@ -25,10 +25,23 @@ function capitalize(text){
     text = text.toLowerCase();
     return text.replace(text[0], text[0].toUpperCase());
 }
-
+//Check the player's input
+function checkInput(playerSelection){
+    playerSelection = capitalize(playerSelection);
+    let check;
+    if (playerSelection == 'Rock'){
+        check = true;
+    } else if (playerSelection == 'Paper'){
+        check = true;
+    } else if (playerSelection == 'Scissors' || playerSelection == 'Scissor'){
+        check = true;
+    } else {
+        check = false;
+    }
+}
 //Play the round
 function playRound(playerSelection, computerSelection){
-    playerSelection = capitalize(playerSelection);   
+     
     
     if (playerSelection == 'Rock' && computerSelection == 'Scissors'){
         return `You Win! ${playerSelection} beats ${computerSelection}`;
