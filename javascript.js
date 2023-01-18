@@ -1,9 +1,9 @@
 
 //Get Computer's choice
-function getComputerChoice(){
-    const num = Math.floor(Math.random()*3)+1;
+function getComputerChoice() {
+    const num = Math.floor(Math.random() * 3) + 1;
     let choice;
-    switch (num){
+    switch (num) {
         case 1:
             choice = 'Rock';
             break;
@@ -21,37 +21,54 @@ function getComputerChoice(){
 }
 
 //Formats player's choice
-function capitalize(text){
+function capitalize(text) {
     text = text.toLowerCase();
     return text.replace(text[0], text[0].toUpperCase());
 }
 //Check the player's input
-function checkInput(playerSelection){
-    playerSelection = capitalize(playerSelection);
-    let check;
-    if (playerSelection == 'Rock'){
-        check = true;
-    } else if (playerSelection == 'Paper'){
-        check = true;
-    } else if (playerSelection == 'Scissors' || playerSelection == 'Scissor'){
-        check = true;
-    } else {
-        check = false;
+function checkInput(playerSelection) {
+    let input = playerSelection;
+    let keepGoing = true;
+
+    while (keepGoing) {
+        input = capitalize(input);
+        if (input == 'Rock' || input == 'Paper') {
+            keepGoing = false;
+        } else if (input == 'Scissors' || input == 'Scissor') {
+            input = 'Scissors';
+            keepGoing = false;
+        } else {
+            input = prompt('Please enter Rock, Paper, or Scissors');
+            keepGoing = true;
+        }
     }
+    return input;
 }
 //Play the round
-function playRound(playerSelection, computerSelection){
-     
-    
-    if (playerSelection == 'Rock' && computerSelection == 'Scissors'){
-        return `You Win! ${playerSelection} beats ${computerSelection}`;
-    } else if (playerSelection == 'Paper' && computerSelection == 'Rock'){
-        return `You Win! ${playerSelection} beats ${computerSelection}`;
-    } else if (playerSelection == 'Scissors' && computerSelection == 'Paper'){
-        return `You Win! ${playerSelection} beats ${computerSelection}`;
-    } else{
-        return `You Lose! ${computerSelection} beats ${playerSelection}`;
+function playRound(playerSelection, computerSelection) {
+    playerSelection = capitalize(playerSelection);
+
+    if (playerSelection == 'Rock' && computerSelection == 'Scissors') {
+        return `You Win! ${playerSelection} beats ${computerSelection}!`;
+    } else if (playerSelection == 'Paper' && computerSelection == 'Rock') {
+        return `You Win! ${playerSelection} beats ${computerSelection}!`;
+    } else if (playerSelection == 'Scissors' && computerSelection == 'Paper') {
+        return `You Win! ${playerSelection} beats ${computerSelection}!`;
+    } else if (playerSelection == computerSelection) {
+        return `${playerSelection} versus ${computerSelection}! It's a Draw!`
+    } else {
+        return `You Lose! ${computerSelection} beats ${playerSelection}!`;
+    }
+}
+//Runs a 5-round game of Rock, Paper, Scissors
+function game() {
+    for (let i = 0; i < 5; i++) {
+        let playerSelection = prompt("Rock, Paper, or Scissors?");
+        playerSelection = checkInput(playerSelection);
+        
+        const computerSelection = getComputerChoice();
+        console.log(playRound(playerSelection, computerSelection));
     }
 }
 
-console.log(getComputerChoice());
+game();
