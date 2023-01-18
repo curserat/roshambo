@@ -20,4 +20,25 @@ function getComputerChoice(){
     return choice;
 }
 
+//Formats player's choice
+function capitalize(text){
+    text = text.toLowerCase();
+    return text.replace(text[0], text[0].toUpperCase());
+}
+
+//Play the round
+function playRound(playerSelection, computerSelection){
+    playerSelection = capitalize(playerSelection);   
+    
+    if (playerSelection == 'Rock' && computerSelection == 'Scissors'){
+        return `You Win! ${playerSelection} beats ${computerSelection}`;
+    } else if (playerSelection == 'Paper' && computerSelection == 'Rock'){
+        return `You Win! ${playerSelection} beats ${computerSelection}`;
+    } else if (playerSelection == 'Scissors' && computerSelection == 'Paper'){
+        return `You Win! ${playerSelection} beats ${computerSelection}`;
+    } else{
+        return `You Lose! ${computerSelection} beats ${playerSelection}`;
+    }
+}
+
 console.log(getComputerChoice());
