@@ -55,17 +55,21 @@ function playRound(playerSelection, computerSelection) {
 
     if (playerSelection == 'Rock' && computerSelection == 'Scissors') {
         playerScore++;
+        count++;
         return `You Win! ${playerSelection} beats ${computerSelection}! - Score: ${playerScore} | ${computerScore}`;
     } else if (playerSelection == 'Paper' && computerSelection == 'Rock') {
         playerScore++;
+        count++;
         return `You Win! ${playerSelection} beats ${computerSelection}! - Score: ${playerScore} | ${computerScore}`;
     } else if (playerSelection == 'Scissors' && computerSelection == 'Paper') {
         playerScore++;
+        count++;
         return `You Win! ${playerSelection} beats ${computerSelection}! - Score: ${playerScore} | ${computerScore}`;
     } else if (playerSelection == computerSelection) {
         return `It's a Draw! ${playerSelection} and ${computerSelection}! - Score: ${playerScore} | ${computerScore}`
     } else {
         computerScore++;
+        count++;
         return `You Lose! ${computerSelection} beats ${playerSelection}! - Score: ${playerScore} | ${computerScore}`;
     }
 }
@@ -73,17 +77,27 @@ function playRound(playerSelection, computerSelection) {
 let computerScore = 0;
 let playerScore = 0;
 
+//Round counter
+let count = 0;
+
 //Runs a 5-round game of Rock, Paper, Scissors
 function game() {
     computerScore = 0;
     playerScore = 0;
 
-    for (i = 0; i < 5; i++) {
+    for (count = 0; count < 5;) {
         let playerSelection = prompt("Rock, Paper, or Scissors?");
         playerSelection = checkInput(playerSelection);
-
         const computerSelection = getComputerChoice();
+
         console.log(playRound(playerSelection, computerSelection));
+        if (playerScore == 3 && computerScore == 1) {
+            console.log("Best out of 5!")
+            count = 5;
+        } else if (computerScore == 3 && playerScore == 1) {
+            console.log("Best out of 5!")
+            count = 5;
+        }
     }
 
     console.log("GAME END")
@@ -93,23 +107,24 @@ function game() {
     } else if (playerScore < computerScore) {
         console.log("Computer Wins the Game!");
     } else if (playerScore == computerScore) {
-        console.log("It's a Tie Game!");    
+        console.log("It's a Tie Game!");
     } else {
-        console.log("Wait, what?");     
+        console.log("Wait, what?");
     }
     console.log(`Your Score: ${playerScore} | Computer Score: ${computerScore}`);
 }
 
-function runGame(){
+//Run the game until user stops
+function runGame() {
     let keepGoing = true;
-    while(keepGoing){
+    while (keepGoing) {
 
         game();
         let playAgain = confirm('Do you want to play again?');
-        if(playAgain){
+        if (playAgain) {
             console.clear();
             keepGoing;
-        } else{
+        } else {
             keepGoing = false;
         }
     }
