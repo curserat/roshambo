@@ -49,30 +49,55 @@ function checkInput(playerSelection) {
     return formatText(input);
 }
 
+
 //Play the round
 function playRound(playerSelection, computerSelection) {
-
+    
     if (playerSelection == 'Rock' && computerSelection == 'Scissors') {
+        playerScore++;
         return `You Win! ${playerSelection} beats ${computerSelection}!`;
     } else if (playerSelection == 'Paper' && computerSelection == 'Rock') {
+        playerScore++;
         return `You Win! ${playerSelection} beats ${computerSelection}!`;
     } else if (playerSelection == 'Scissors' && computerSelection == 'Paper') {
+        playerScore++;
         return `You Win! ${playerSelection} beats ${computerSelection}!`;
     } else if (playerSelection == computerSelection) {
         return `It's a Draw! ${playerSelection} and ${computerSelection}!`
     } else {
+        computerScore++;
         return `You Lose! ${computerSelection} beats ${playerSelection}!`;
     }
 }
+//Initialize scores
+let computerScore = 0;
+let playerScore = 0;
 
 //Runs a 5-round game of Rock, Paper, Scissors
 function game() {
+    computerScore = 0;
+    playerScore = 0;
+
     for (let i = 0; i < 5; i++) {
         let playerSelection = prompt("Rock, Paper, or Scissors?");
         playerSelection = checkInput(playerSelection);
-
         const computerSelection = getComputerChoice();
         console.log(playRound(playerSelection, computerSelection));
+        console.log(`Your Score: ${playerScore} | Computer Score: ${computerScore}`);
+    }
+    console.log("GAME END")
+    if(playerScore > computerScore){
+        console.log("You Win the Game!");
+        console.log(`Your Score: ${playerScore} | Computer Score: ${computerScore}`)
+    } else if(playerScore < computerScore){
+        console.log("Computer Wins the Game!");
+        console.log(`Your Score: ${playerScore} | Computer Score: ${computerScore}`)
+    } else if(playerScore == computerScore){
+        console.log("It's a Tie Game!");
+        console.log(`Your Score: ${playerScore} | Computer Score: ${computerScore}`)
+    } else {
+        console.log("Wait, what?");
+        console.log(`Your Score: ${playerScore} | Computer Score: ${computerScore}`)
     }
 }
 
