@@ -22,6 +22,7 @@ function getComputerChoice() {
 
 //Format player's choice
 function capitalize(text) {
+    text = text.trim();
     text = text.toLowerCase();
     return text.replace(text[0], text[0].toUpperCase());
 }
@@ -32,10 +33,12 @@ function checkInput(playerSelection) {
     let keepGoing = true;
 
     while (keepGoing) {
-        input = capitalize(input);
-        if (input == 'Rock' || input == 'Paper') {
+        if (!input) {
+            input = prompt('Please enter Rock, Paper, or Scissors');
+            keepGoing = true;
+        } else if (capitalize(input) == 'Rock' || capitalize(input) == 'Paper') {
             keepGoing = false;
-        } else if (input == 'Scissors' || input == 'Scissor') {
+        } else if (capitalize(input) == 'Scissors' || capitalize(input) == 'Scissor') {
             input = 'Scissors';
             keepGoing = false;
         } else {
@@ -43,7 +46,7 @@ function checkInput(playerSelection) {
             keepGoing = true;
         }
     }
-    return input;
+    return capitalize(input);
 }
 
 //Play the round
