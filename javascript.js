@@ -52,7 +52,7 @@ function checkInput(playerSelection) {
 
 //Play the round
 function playRound(playerSelection, computerSelection) {
-    
+
     if (playerSelection == 'Rock' && computerSelection == 'Scissors') {
         playerScore++;
         return `You Win! ${playerSelection} beats ${computerSelection}!`;
@@ -84,15 +84,24 @@ function game() {
         const computerSelection = getComputerChoice();
         console.log(playRound(playerSelection, computerSelection));
         console.log(`Your Score: ${playerScore} | Computer Score: ${computerScore}`);
+        if (playerScore == 3 && computerScore <= 2){
+            console.log("Best out of 5!")
+            i = 5;
+        } else if (computerScore == 3 && playerScore <= 2){
+            console.log("Best out of 5!")
+            i = 5;
+        }
     }
+
     console.log("GAME END")
-    if(playerScore > computerScore){
+
+    if (playerScore > computerScore) {
         console.log("You Win the Game!");
         console.log(`Your Score: ${playerScore} | Computer Score: ${computerScore}`)
-    } else if(playerScore < computerScore){
+    } else if (playerScore < computerScore) {
         console.log("Computer Wins the Game!");
         console.log(`Your Score: ${playerScore} | Computer Score: ${computerScore}`)
-    } else if(playerScore == computerScore){
+    } else if (playerScore == computerScore) {
         console.log("It's a Tie Game!");
         console.log(`Your Score: ${playerScore} | Computer Score: ${computerScore}`)
     } else {
@@ -101,4 +110,19 @@ function game() {
     }
 }
 
-game();
+function runGame(){
+    let keepGoing = true;
+    while(keepGoing){
+
+        game();
+        let playAgain = confirm('Do you want to play again?');
+        if(playAgain){
+            console.clear();
+            keepGoing;
+        } else{
+            keepGoing = false;
+        }
+    }
+}
+
+runGame();
