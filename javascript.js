@@ -93,10 +93,7 @@ function game() {
         const computerSelection = getComputerChoice();
 
         console.log(playRound(playerSelection, computerSelection));
-        if (playerScore == 3 && computerScore <= 1) {
-            console.log("Best out of 5!");
-            count = 5;
-        } else if (computerScore == 3 && playerScore <= 1) {
+        if (playerScore == 3 && computerScore <= 1 || computerScore == 3 && playerScore <= 1) {
             console.log("Best out of 5!");
             count = 5;
         }
