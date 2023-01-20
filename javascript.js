@@ -85,22 +85,24 @@ function game() {
     computerScore = 0;
     playerScore = 0;
 
+    console.log("GAME START");
+
     for (count = 0; count < 5;) {
         let playerSelection = prompt("Rock, Paper, or Scissors?");
         playerSelection = checkInput(playerSelection);
         const computerSelection = getComputerChoice();
 
         console.log(playRound(playerSelection, computerSelection));
-        if (playerScore == 3 && computerScore == 1) {
-            console.log("Best out of 5!")
+        if (playerScore == 3 && computerScore <= 1) {
+            console.log("Best out of 5!");
             count = 5;
-        } else if (computerScore == 3 && playerScore == 1) {
-            console.log("Best out of 5!")
+        } else if (computerScore == 3 && playerScore <= 1) {
+            console.log("Best out of 5!");
             count = 5;
         }
     }
 
-    console.log("GAME END")
+    console.log("GAME END");
 
     if (playerScore > computerScore) {
         console.log("You Win the Game!");
@@ -117,13 +119,14 @@ function game() {
 //Run the game until user stops
 function runGame() {
     let keepGoing = true;
+    let playGame = confirm('Start Rock, Paper, Scissors?');
+
     while (keepGoing) {
 
-        game();
-        let playAgain = confirm('Do you want to play again?');
-        if (playAgain) {
+        if (playGame) {
             console.clear();
-            keepGoing;
+            game();
+            playGame = confirm('Play Again?');
         } else {
             keepGoing = false;
         }
